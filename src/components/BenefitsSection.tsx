@@ -20,11 +20,14 @@ const benefits = [
 
 export function BenefitsSection() {
   return (
-    <section className="bg-[#F8F9FA] py-20 md:py-28 overflow-hidden">
+    <section id="features" className="scroll-mt-24 overflow-hidden bg-[#F8F9FA] py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-3xl text-center">
+      <p className="mb-4 text-sm text-gray-500">//features</p>
         <h2 className="mx-auto max-w-3xl text-center text-4xl font-extrabold tracking-tight text-gray-900 md:text-[52px] md:leading-[1.1]">
           A real system. Not another<br className="hidden md:block" /> AI demo.
         </h2>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 32 }}

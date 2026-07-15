@@ -24,7 +24,7 @@ const cards = [
 
 export function ProblemSection() {
   return (
-    <section id="features" className="scroll-mt-24 bg-white py-20 md:py-32">
+    <section className="bg-white py-20 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         
         {/* Header Section */}

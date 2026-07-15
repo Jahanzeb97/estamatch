@@ -1,14 +1,18 @@
+import { Link } from "react-router-dom";
 import { Logo, SalesLink } from "./ui";
 
-const footerLinks = {
-  Company: ["About", "Features", "Works", "Career"],
-  Help: [
-    "Customer Support",
-    "Delivery Details",
-    "Terms & Conditions",
-    "Privacy Policy",
-  ],
-};
+const companyLinks = [
+  { label: "Features", to: { pathname: "/", hash: "#features" } },
+  { label: "How we work", to: { pathname: "/", hash: "#how-it-works" } },
+  { label: "Automation", to: { pathname: "/", hash: "#outreach" } },
+];
+
+const helpLinks = [
+  "Customer Support",
+  "Delivery Details",
+  "Terms & Conditions",
+  "Privacy Policy",
+];
 
 export function Footer() {
   return (
@@ -29,14 +33,14 @@ export function Footer() {
           <div className="lg:col-span-2">
             <h4 className="text-[16px] font-semibold text-[#1E293B]">Company</h4>
             <ul className="mt-6 space-y-4">
-              {footerLinks.Company.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
+              {companyLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.to}
                     className="text-[15px] text-[#475569] transition-colors hover:text-[#1E293B]"
                   >
-                    {link}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -46,7 +50,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <h4 className="text-[16px] font-semibold text-[#1E293B]">Help</h4>
             <ul className="mt-6 space-y-4">
-              {footerLinks.Help.map((link) => (
+              {helpLinks.map((link) => (
                 <li key={link}>
                   <a
                     href="#"

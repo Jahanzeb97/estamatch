@@ -68,9 +68,12 @@ export function BuyerInsights() {
     <section className="bg-[#F8F9FA] py-20 md:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
+        <p className="mb-4 text-sm text-gray-500">//the scoring system</p>
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 md:text-[42px] md:leading-tight">
             Know exactly why each<br className="hidden md:block" /> buyer is selected.
           </h2>
+          </div>
           <p className="mt-6 text-base leading-relaxed text-gray-600 md:text-[17px]">
             Every buyer is scored based on factors like location, budget, asset class, and intent.
             Instead of guessing, you get clear visibility into why a buyer is the right fit for your listing.

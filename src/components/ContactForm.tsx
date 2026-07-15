@@ -1,21 +1,45 @@
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { submitContactForm } from "../lib/contactApi";
 
 const inputClass =
-  "h-12 w-full rounded-lg border border-white/40 bg-white/5 px-4 text-sm text-white placeholder-white/60 outline-none transition-all focus:border-white focus:bg-white/10 focus:ring-1 focus:ring-white/50";
+  "h-12 w-full rounded-lg border border-white/30 bg-white/5 px-4 text-sm text-white placeholder-white/70 outline-none transition-all focus:border-white/60 focus:bg-white/10 focus:ring-1 focus:ring-white/40";
 
 export function ContactFormSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 5000);
+    setError(null);
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      await submitContactForm({
+        fullName: String(data.get("fullName") || ""),
+        companyName: String(data.get("companyName") || ""),
+        email: String(data.get("email") || ""),
+        phone: String(data.get("phone") || "") || undefined,
+        message: String(data.get("message") || ""),
+      });
+
+      form.reset();
+      setIsSubmitted(true);
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section className="relative overflow-hidden bg-[#f4f6f9] py-20 md:py-28">
-      {/* Background gradient */}
+      {/* Top Background gradient */}
       <div
         className="pointer-events-none absolute left-1/2 top-0 z-0 h-[520px] w-[900px] -translate-x-1/2 rounded-full blur-[120px]"
         style={{
@@ -79,68 +103,117 @@ export function ContactFormSection() {
           system using your own data samples.
         </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-12 overflow-hidden rounded-3xl border border-white/20 p-8 text-left shadow-2xl backdrop-blur-xl md:p-12"
-          style={{ background: "rgba(152, 159, 174, 0.65)" }}
-        >
-          <form onSubmit={handleSubmit} className="mx-auto flex max-w-3xl flex-col gap-6">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-white">Full Name</label>
-                <input type="text" required placeholder="Jane Cooper" className={inputClass} />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-white">Company Name</label>
-                <input type="text" required placeholder="Acme Real Estate" className={inputClass} />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-white">Email Address</label>
-                <input type="email" required placeholder="jane@example.com" className={inputClass} />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-white">Phone Number</label>
-                <input type="tel" placeholder="(555) 000-0000" className={inputClass} />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-white">Role / Title</label>
-                <input type="text" placeholder="Managing Broker" className={inputClass} />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-white">Monthly Listings</label>
-                <input type="text" placeholder="e.g. 15-20" className={inputClass} />
-              </div>
-            </div>
+        <div className="relative mx-auto mt-12 max-w-4xl">
+          <div
+            className="absolute -inset-4 z-0 rounded-[40px] blur-[70px] opacity-100"
+            style={{
+              background:
+                "linear-gradient(110deg, rgba(210, 245, 215, 0.95) 0%, rgba(185, 175, 215, 0.95) 45%, rgba(160, 185, 210, 0.95) 100%)",
+            }}
+            aria-hidden="true"
+          />
 
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-white">Message / Project Notes</label>
-              <textarea
-                required
-                placeholder="Tell us about your team and specific automation goals..."
-                className="h-32 w-full resize-none rounded-lg border border-white/40 bg-white/5 p-4 text-sm text-white placeholder-white/60 outline-none transition-all focus:border-white focus:bg-white/10 focus:ring-1 focus:ring-white/50"
-              />
-            </div>
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative z-10 overflow-hidden rounded-3xl border border-white/40 p-8 text-left shadow-2xl backdrop-blur-2xl md:p-12"
+            style={{
+              background: "rgba(160, 165, 185, 0.35)",
+            }}
+          >
+            <form onSubmit={handleSubmit} className="mx-auto flex flex-col gap-8">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="fullName" className="text-sm font-medium text-white">
+                    Full Name
+                  </label>
+                  <input
+                    id="fullName"
+                    name="fullName"
+                    type="text"
+                    required
+                    placeholder="Enter your full name"
+                    className={inputClass}
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="companyName" className="text-sm font-medium text-white">
+                    Company Name
+                  </label>
+                  <input
+                    id="companyName"
+                    name="companyName"
+                    type="text"
+                    required
+                    placeholder="Your company name"
+                    className={inputClass}
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="text-sm font-medium text-white">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@company.com"
+                    className={inputClass}
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="phone" className="text-sm font-medium text-white">
+                    Phone Number
+                  </label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="(555) 000-0000"
+                    className={inputClass}
+                  />
+                </div>
+              </div>
 
-            <div className="mt-2 flex flex-col items-center gap-4">
-              <button
-                type="submit"
-                className="flex items-center gap-2 rounded-xl bg-[#2d2d2d] px-10 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-black"
-              >
-                Send
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-              <p className="flex items-center gap-2 text-sm text-emerald-400">
-                <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                Average response time: under 2 hours
-              </p>
-            </div>
-          </form>
-        </motion.div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="message" className="text-sm font-medium text-white">
+                  Message/Notes
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  placeholder="Tell us about your team and what you're looking to achieve..."
+                  className="h-32 w-full resize-none rounded-lg border border-white/30 bg-white/5 p-4 text-sm text-white placeholder-white/70 outline-none transition-all focus:border-white/60 focus:bg-white/10 focus:ring-1 focus:ring-white/40"
+                />
+              </div>
+
+              {error && (
+                <p className="rounded-lg border border-red-300/40 bg-red-500/15 px-4 py-3 text-sm text-white">
+                  {error}
+                </p>
+              )}
+
+              <div className="mt-2 flex flex-col items-center gap-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex items-center gap-2 rounded-xl bg-[#2d2d2d] px-12 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {isSubmitting ? "Sending..." : "Submit"}
+                  {!isSubmitting && (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
