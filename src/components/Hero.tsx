@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { SalesLink } from "./ui";
 import { DashboardPreview } from "./DashboardPreview";
-import { AgencyLogos } from "./AgencyLogos";
+// import { AgencyLogos } from "./AgencyLogos";
 
 export function Hero() {
   return (
@@ -64,7 +64,7 @@ export function Hero() {
       </div>
 
       <DashboardPreview />
-      <AgencyLogos />
+      {/* <AgencyLogos /> */}
     </section>
   );
 }
