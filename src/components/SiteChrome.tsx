@@ -1,15 +1,34 @@
+import { useEffect, useState } from "react";
 import "./site-chrome.css";
 
 const LOGO = "/home/assets/estamatch-logo.svg";
 
 export function SiteNav() {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
   return (
-    <nav className="es-chrome es-top" aria-label="Main">
+    <nav className={`es-chrome es-top${open ? " open" : ""}`} aria-label="Main">
       <div className="es-wrap">
         <a href="/" className="es-logo" aria-label="EstaMatch">
           <img src={LOGO} width={164} height={27} alt="EstaMatch" />
         </a>
-        <div className="es-links">
+        <button
+          className="es-menu-btn"
+          type="button"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="site-links"
+          onClick={() => setOpen(!open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <div className="es-links" id="site-links" onClick={() => setOpen(false)}>
           <a href="/#assistant">AI assistant</a>
           <a href="/#meta">Meta ads</a>
           <a href="/#calling">AI calling</a>
@@ -38,14 +57,14 @@ export function SiteFooter() {
         </div>
         <div className="es-cols">
           <div>
-            <h5>Product</h5>
+            <p className="es-fh">Product</p>
             <a href="/#assistant">AI assistant</a>
             <a href="/#meta">Meta ads</a>
             <a href="/#features">CRM</a>
             <a href="/#pricing">Pricing</a>
           </div>
           <div>
-            <h5>Company</h5>
+            <p className="es-fh">Company</p>
             <a href="/contact">Book a demo</a>
             <a href="/#faq">FAQ</a>
           </div>
