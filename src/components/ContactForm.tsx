@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence, LazyMotion, domAnimation } from "framer-motion";
 import { submitContactForm } from "../lib/contactApi";
 
 const inputClass =
@@ -38,6 +38,7 @@ export function ContactFormSection() {
   };
 
   return (
+    <LazyMotion features={domAnimation} strict>
     <section className="relative overflow-hidden bg-[#f4f6f9] py-20 md:py-28">
       {/* Top Background gradient */}
       <div
@@ -216,5 +217,6 @@ export function ContactFormSection() {
         </div>
       </div>
     </section>
+    </LazyMotion>
   );
 }
