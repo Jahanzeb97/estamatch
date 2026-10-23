@@ -68,13 +68,13 @@ export function Logo({
   dark?: boolean;
 }) {
   return (
-    <Link to="/" className={`inline-flex shrink-0 ${className}`}>
+    <a href="/" className={`inline-flex shrink-0 ${className}`}>
       <img
         src="/estamatch-logo.svg"
         alt="EstaMatch"
         className={`h-7 w-auto md:h-8 ${dark ? "brightness-0 invert" : ""}`}
       />
-    </Link>
+    </a>
   );
 }
 

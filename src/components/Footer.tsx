@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
 import { Logo, SalesLink } from "./ui";
 
 const companyLinks = [
-  { label: "Features", to: { pathname: "/", hash: "#features" } },
-  { label: "How we work", to: { pathname: "/", hash: "#how-it-works" } },
-  { label: "Automation", to: { pathname: "/", hash: "#outreach" } },
+  { label: "AI assistant", href: "/#assistant" },
+  { label: "Meta ads", href: "/#meta" },
+  { label: "AI calling", href: "/#calling" },
+  { label: "Outreach", href: "/#outreach" },
+  { label: "Pricing", href: "/#pricing" },
 ];
 
 const helpLinks = [
@@ -35,12 +36,12 @@ export function Footer() {
             <ul className="mt-6 space-y-4">
               {companyLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.to}
+                  <a
+                    href={link.href}
                     className="text-[15px] text-[#475569] transition-colors hover:text-[#1E293B]"
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

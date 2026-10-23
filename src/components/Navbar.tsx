@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
 import { Logo, SalesLink } from "./ui";
 
 const navLinks = [
-  { label: "Features", to: { pathname: "/", hash: "#features" } },
-  { label: "How we work", to: { pathname: "/", hash: "#how-it-works" } },
-  { label: "Automation", to: { pathname: "/", hash: "#outreach" } },
+  { label: "AI assistant", href: "/#assistant" },
+  { label: "Meta ads", href: "/#meta" },
+  { label: "AI calling", href: "/#calling" },
+  { label: "Outreach", href: "/#outreach" },
+  { label: "Pricing", href: "/#pricing" },
 ];
 
 export function Navbar() {
@@ -15,13 +16,13 @@ export function Navbar() {
 
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 md:flex">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.label}
-              to={link.to}
+              href={link.href}
               className="text-sm font-normal text-[#888888] transition-colors hover:text-[#2d2d2d]"
             >
               {link.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
