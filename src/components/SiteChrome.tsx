@@ -1,0 +1,56 @@
+import "./site-chrome.css";
+
+const LOGO = "/home/assets/estamatch-logo.svg";
+
+export function SiteNav() {
+  return (
+    <nav className="es-chrome es-top" aria-label="Main">
+      <div className="es-wrap">
+        <a href="/" className="es-logo" aria-label="EstaMatch">
+          <img src={LOGO} width={164} height={27} alt="EstaMatch" />
+        </a>
+        <div className="es-links">
+          <a href="/#assistant">AI assistant</a>
+          <a href="/#meta">Meta ads</a>
+          <a href="/#calling">AI calling</a>
+          <a href="/#outreach">Outreach</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <a className="es-btn es-btn-dark" href="/contact">Book a demo</a>
+      </div>
+    </nav>
+  );
+}
+
+export function SiteFooter() {
+  return (
+    <footer className="es-chrome es-foot">
+      <div className="es-wrap">
+        <div>
+          <a href="/" className="es-logo">
+            <img src={LOGO} width={164} height={27} alt="EstaMatch" />
+          </a>
+          <p style={{ marginTop: 10, maxWidth: 320 }}>
+            The AI sales assistant and CRM for any business that sells through a sales team. A product by Improdata.
+          </p>
+          <p style={{ marginTop: 18 }}>© 2026 Improdata. All rights reserved.</p>
+        </div>
+        <div className="es-cols">
+          <div>
+            <h5>Product</h5>
+            <a href="/#assistant">AI assistant</a>
+            <a href="/#meta">Meta ads</a>
+            <a href="/#features">CRM</a>
+            <a href="/#pricing">Pricing</a>
+          </div>
+          <div>
+            <h5>Company</h5>
+            <a href="/contact">Book a demo</a>
+            <a href="/#faq">FAQ</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

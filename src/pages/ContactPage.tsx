@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Navbar } from "../components/Navbar";
+import { SiteNav, SiteFooter } from "../components/SiteChrome";
 import { ContactFormSection } from "../components/ContactForm";
-import { Footer } from "../components/Footer";
 
 export function ContactPage() {
   const { pathname } = useLocation();
@@ -13,11 +12,11 @@ export function ContactPage() {
 
   return (
     <div className="min-h-screen bg-[#f9f9f9]">
-      <Navbar />
+      <SiteNav />
       <main>
         <ContactFormSection />
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }
