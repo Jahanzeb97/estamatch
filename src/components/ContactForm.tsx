@@ -90,17 +90,17 @@ export function ContactFormSection() {
       </AnimatePresence>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-        <p className="text-sm font-medium tracking-widest text-gray-500">
-          // GET STARTED
-        </p>
+        <span className="font-mono text-[13px] tracking-[0.02em] text-[#7c3aed]">
+          //get started
+        </span>
 
-        <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-[#2d3342] md:text-[52px] md:leading-tight">
-          Let&apos;s find the right buyers for your listings.
+        <h2 className="mb-[14px] mt-[10px] text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.1] tracking-[-0.035em] text-black">
+          See EstaMatch with your own leads.
         </h2>
 
-        <p className="mx-auto mt-5 max-w-2xl text-base text-gray-500 md:text-lg">
-          Our team will walk you through a personalized demo of the AI matching
-          system using your own data samples.
+        <p className="mx-auto max-w-[700px] text-[clamp(17px,1.6vw,20px)] text-[#475569]">
+          Tell us about your team and we will walk you through a personal demo
+          of the AI assistant, the pipeline and the owner dashboard.
         </p>
 
         <div className="relative mx-auto mt-12 max-w-4xl">
