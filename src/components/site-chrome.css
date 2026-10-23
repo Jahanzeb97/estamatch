@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+/* Ported from public/home/styles.css so the contact page header and footer match the static home page. */
+.es-chrome{font-family:Inter,system-ui,sans-serif;color:#1E293B;line-height:1.6;-webkit-font-smoothing:antialiased}
+.es-chrome a{color:inherit;text-decoration:none}
+.es-wrap{max-width:1180px;margin:0 auto;padding:0 24px;box-sizing:border-box}
+nav.es-top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,.05)}
+nav.es-top .es-wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.es-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px;letter-spacing:-.03em;color:#000}
+.es-logo img{height:30px;width:auto;display:block}
+footer.es-foot .es-logo img{height:28px}
+.es-links{display:flex;gap:28px;font-size:14px;color:#475569}
+.es-chrome .es-links a:hover{color:#000}
+.es-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font-weight:600;transition:.2s;border:1px solid transparent;cursor:pointer;padding:9px 18px;font-size:14px;line-height:1.6}
+.es-chrome .es-btn-dark{background:#111;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.es-chrome .es-btn-dark:hover{background:#2d2d2d;transform:translateY(-1px)}
+footer.es-foot{padding:56px 0 40px;border-top:1px solid #e5e7eb;font-size:14px;color:#475569;background:#fff}
+footer.es-foot .es-wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer.es-foot p{margin:0}
+footer.es-foot .es-cols{display:flex;gap:56px}
+footer.es-foot h5{color:#000;font-size:13px;margin:0 0 10px;font-weight:700}
+footer.es-foot .es-cols a{display:block;margin-bottom:6px}
+.es-chrome footer.es-foot .es-cols a:hover,footer.es-foot .es-cols a:hover{color:#000}
+@media (max-width:1000px){.es-links{display:none}}
+@media (max-width:640px){footer.es-foot .es-cols{gap:32px}}
