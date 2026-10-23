@@ -91,7 +91,7 @@ export function ContactFormSection() {
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
         <span className="font-mono text-[13px] tracking-[0.02em] text-[#7c3aed]">
-          //get started
+          Get started
         </span>
 
         <h2 className="mb-[14px] mt-[10px] text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.1] tracking-[-0.035em] text-black">
