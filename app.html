@@ -7,9 +7,27 @@
     <link rel="preload" href="/home/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <meta name="description" content="Book a personal demo of EstaMatch, the AI sales assistant and CRM for any business that sells through a sales team." />
     <title>Contact EstaMatch | Book a demo</title>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '__META_PIXEL_ID__');
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
   </head>
   <body>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=__META_PIXEL_ID__&ev=PageView&noscript=1"
+    /></noscript>
     <div id="root"></div>
+    <script src="/meta-pixel.js"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

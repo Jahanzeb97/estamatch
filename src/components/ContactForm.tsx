@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { m as motion, AnimatePresence, LazyMotion, domAnimation } from "framer-motion";
 import { submitContactForm } from "../lib/contactApi";
+import { trackMetaLead } from "../lib/metaPixel";
 
 const inputClass =
   "h-12 w-full rounded-lg border border-white/30 bg-white/5 px-4 text-sm text-white placeholder-white/70 outline-none transition-all focus:border-white/60 focus:bg-white/10 focus:ring-1 focus:ring-white/40";
@@ -27,6 +28,7 @@ export function ContactFormSection() {
         message: String(data.get("message") || ""),
       });
 
+      trackMetaLead();
       form.reset();
       setIsSubmitted(true);
       setTimeout(() => setIsSubmitted(false), 5000);
